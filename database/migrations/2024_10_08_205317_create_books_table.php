@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->integer('published_year')->unsigned();
             $table->string('status', 100)->nullable()->default('text');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

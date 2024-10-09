@@ -1,23 +1,25 @@
 <script setup lang="ts">
+import { useHelpers } from "@/Composables";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
-import BookForm from "@/Components/BookForm.vue";
+import { Head } from "@inertiajs/vue3";
 
 defineProps<{
-    statusList: string[];
+    book: any;
 }>();
+
+const { getStatusBagde } = useHelpers();
 </script>
 
 <template>
     <GuestLayout>
-        <Head title="Add New Book" />
+        <Head :title="book.title" />
         <div class="flex justify-center gap-4">
             <div class="w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
                 <div class="card w-full shadow-xl">
                     <div class="card-body">
-                        <div class="card-title py-5">
+                        <div class="card-title pt-5">
                             <div>
-                                <span class="text-2xl"> Add New Book </span>
+                                <span class="text-2xl"> {{ book.title }} </span>
                                 <a
                                     :href="route('books.index')"
                                     class="btn btn-sm ml-3"
@@ -43,7 +45,30 @@ defineProps<{
                                 </a>
                             </div>
                         </div>
-                        <BookForm :status-list="statusList"></BookForm>
+                        <div class="card-title text-lg py-3">
+                            {{ book.author }}
+                        </div>
+                        <p class="pb-5">
+                            {{ book.description }}
+                        </p>
+                        <div class="card-actions justify-between">
+                            <div>Published in {{ book.published_year }}</div>
+                            <div>
+                                <div
+                                    :class="[
+                                        'text-white',
+                                        'uppercase',
+                                        'p-3',
+                                        'font-bold',
+                                        'badge',
+                                        'gap-2',
+                                        getStatusBagde(book.status),
+                                    ]"
+                                >
+                                    {{ book.status }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

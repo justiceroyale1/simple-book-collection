@@ -1,23 +1,24 @@
 <script setup lang="ts">
 import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
 import BookForm from "@/Components/BookForm.vue";
 
 defineProps<{
     statusList: string[];
+    book: any;
 }>();
 </script>
 
 <template>
     <GuestLayout>
-        <Head title="Add New Book" />
+        <Head title="Edit Book" />
         <div class="flex justify-center gap-4">
             <div class="w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
                 <div class="card w-full shadow-xl">
                     <div class="card-body">
                         <div class="card-title py-5">
                             <div>
-                                <span class="text-2xl"> Add New Book </span>
+                                <span class="text-2xl"> Edit Book </span>
                                 <a
                                     :href="route('books.index')"
                                     class="btn btn-sm ml-3"
@@ -43,7 +44,10 @@ defineProps<{
                                 </a>
                             </div>
                         </div>
-                        <BookForm :status-list="statusList"></BookForm>
+                        <BookForm
+                            :status-list="statusList"
+                            :book="book"
+                        ></BookForm>
                     </div>
                 </div>
             </div>

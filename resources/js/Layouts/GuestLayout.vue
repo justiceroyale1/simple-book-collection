@@ -23,7 +23,7 @@ const appName = computed(() => {
         <!-- <div
             class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg"
         > -->
-        <div class="min-h-screen">
+        <div class="min-h-screen py-10">
             <main>
                 <slot />
             </main>
